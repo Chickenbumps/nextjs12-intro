@@ -1,22 +1,28 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Navbar() {
   const router = useRouter();
+  useEffect(() => {
+    console.log("router:", router.pathname);
+  }, [router.pathname]);
   return (
-    <div>
+    <nav>
       <Link
-        style={{ color: router.pathname === "/" ? "red" : "blue" }}
+        legacyBehavior
+        className={router.pathname == "/" ? "active" : ""}
         href="/"
       >
         Home
       </Link>
       <Link
-        style={{ color: router.pathname === "/post" ? "red" : "blue" }}
+        legacyBehavior
+        className={router.pathname == "/post" ? "active" : ""}
         href="/post"
       >
         Post
       </Link>
-    </div>
+    </nav>
   );
 }

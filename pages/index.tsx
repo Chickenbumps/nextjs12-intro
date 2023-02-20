@@ -6,6 +6,14 @@ export default function Home() {
     <>
       <Navbar />
       <h1>HOME</h1>
+      <style jsx>
+        {`
+          h1 {
+            font-weight: bold;
+            background-color: yellow;
+          }
+        `}
+      </style>
     </>
   );
 }
