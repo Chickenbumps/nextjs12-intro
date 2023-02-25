@@ -1,21 +1,14 @@
+import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 
-const API_KEY = "10923b261ba94d897ac6b81148314a3f";
+interface PageProps {
+  results: Object[];
+}
 
-export default function Home() {
-  const [movies, setMovies] = useState<Object[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      const data = await (await fetch("/api/movies")).json();
-      setMovies(data.results);
-    })();
-  }, []);
-
+export default function Home({ results }: PageProps) {
   return (
     <div className="container">
-      {!movies && <h4>Loading...</h4>}
-      {movies?.map((movie: any) => (
+      {results?.map((movie: any) => (
         <div className="movie" key={movie.key}>
           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
           <h4>{movie.original_title}</h4>
@@ -45,3 +38,12 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
+  const { results }: any = await (
+    await fetch(`${process.env.DEV_HOST_NAME}/api/movies`)
+  ).json();
+  return {
+    props: { results },
+  };
+};
