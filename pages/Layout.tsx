@@ -9,7 +9,7 @@ interface Props {
 const Layout: React.FC<Props> = ({ children }) => {
   const obj: any = { "/": "Home", "/about": "About" };
   const router = useRouter();
-  console.log("router:", router.pathname, obj[router.pathname]);
+
   return (
     <>
       <Head>

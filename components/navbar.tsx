@@ -4,9 +4,7 @@ import { useEffect } from "react";
 
 export default function Navbar() {
   const router = useRouter();
-  useEffect(() => {
-    console.log("router:", router.pathname);
-  }, [router.pathname]);
+
   return (
     <nav>
       <img src="/vercel.svg" />

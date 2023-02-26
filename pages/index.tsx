@@ -9,15 +9,7 @@ interface PageProps {
 export default function Home({ results }: PageProps) {
   const router = useRouter();
   const onClickMovie = ({ id, title }: { id: number; title: string }) => {
-    router.push(
-      {
-        pathname: `/movies/${id}/`,
-        query: {
-          title,
-        },
-      },
-      `/movies/${id}`
-    );
+    router.push(`/movies/${title}/${id}`);
   };
 
   return (
