@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 interface PageProps {
@@ -6,10 +7,27 @@ interface PageProps {
 }
 
 export default function Home({ results }: PageProps) {
+  const router = useRouter();
+  const onClickMovie = ({ id, title }: { id: number; title: string }) => {
+    router.push(
+      {
+        pathname: `/movies/${id}/`,
+        query: {
+          title,
+        },
+      },
+      `/movies/${id}`
+    );
+  };
+
   return (
     <div className="container">
       {results?.map((movie: any) => (
-        <div className="movie" key={movie.key}>
+        <div
+          onClick={() => onClickMovie({ id: movie.id, title: movie.title })}
+          className="movie"
+          key={movie.id}
+        >
           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
           <h4>{movie.original_title}</h4>
         </div>
