@@ -1,6 +1,7 @@
-import Navbar from "../components/navbar";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Footer from "../components/Footer";
+import Navbar from "../components/navbar";
 
 interface Props {
   children: React.ReactNode;
@@ -17,6 +18,7 @@ const Layout: React.FC<Props> = ({ children }) => {
       </Head>
       <Navbar />
       <div>{children}</div>
+      <Footer />
     </>
   );
 };

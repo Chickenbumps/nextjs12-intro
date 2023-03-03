@@ -70,13 +70,13 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (
   };
 };
 
-// 빌드 시에 딱 한번 pre-rendering 되고 바로 static file로 빌드되어 이후 수정 불가.
-// 고정데이터 처리
-export const getStaticProps: GetStaticProps<PageProps> = async () => {
-  const { results }: PageProps = await (
-    await fetch(`${process.env.DEV_HOST_NAME}/api/movies`)
-  ).json();
-  return {
-    props: { results },
-  };
-};
+// // 빌드 시에 딱 한번 pre-rendering 되고 바로 static file로 빌드되어 이후 수정 불가.
+// // 고정데이터 처리
+// export const getStaticProps: GetStaticProps<PageProps> = async () => {
+//   const { results }: PageProps = await (
+//     await fetch(`${process.env.DEV_HOST_NAME}/api/movies`)
+//   ).json();
+//   return {
+//     props: { results },
+//   };
+// };
